@@ -1,0 +1,104 @@
+[gd_scene load_steps=9 format=3 uid="uid://bt65g0y646jsp"]
+
+[ext_resource type="Texture2D" uid="uid://cm4c4g5k5e3bx" path="res://Intro/1.aseprite" id="1_6h7bn"]
+[ext_resource type="Texture2D" uid="uid://ddfq0he7l3aj3" path="res://Intro/2.aseprite" id="2_bh8yw"]
+[ext_resource type="Texture2D" uid="uid://c5bjfqcavsvm3" path="res://Intro/3.aseprite" id="3_3q35v"]
+[ext_resource type="Texture2D" uid="uid://q0vgap084gnw" path="res://Intro/4.aseprite" id="4_7ogxx"]
+[ext_resource type="Texture2D" uid="uid://enymairrercj" path="res://Intro/5.aseprite" id="5_0oydc"]
+[ext_resource type="Script" path="res://Intro/Director.gd" id="6_4e86m"]
+[ext_resource type="FontFile" uid="uid://b3c2dninxjd0h" path="res://PixelPebble.ttf" id="7_7rbhx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_e054k"]
+line_spacing = 2.0
+font = ExtResource("7_7rbhx")
+font_size = 24
+font_color = Color(0.290196, 0.329412, 0.384314, 1)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="1" type="Sprite2D" parent="."]
+texture = ExtResource("1_6h7bn")
+
+[node name="2" type="Sprite2D" parent="."]
+position = Vector2(0, 144)
+texture = ExtResource("2_bh8yw")
+
+[node name="3" type="Sprite2D" parent="."]
+position = Vector2(0, 288)
+texture = ExtResource("3_3q35v")
+
+[node name="4" type="Sprite2D" parent="."]
+position = Vector2(0, 432)
+texture = ExtResource("4_7ogxx")
+
+[node name="5" type="Sprite2D" parent="."]
+position = Vector2(0, 576)
+texture = ExtResource("5_0oydc")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = -120.0
+offset_top = -64.0
+offset_right = 360.0
+offset_bottom = 32.0
+scale = Vector2(0.5, 0.5)
+bbcode_enabled = true
+text = "[font=res://PixelPebble.ttf][font_size=24][center]Long Ago...
+The [color=6d758d]Stone[/color] [color=333941]Dungeon[/color] was owned by 
+the Five Pebbles[/center][/font_size][/font]
+"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+offset_left = -120.0
+offset_top = 80.0
+offset_right = 360.0
+offset_bottom = 176.0
+scale = Vector2(0.5, 0.5)
+bbcode_enabled = true
+text = "[font=res://PixelPebble.ttf][font_size=24][center] The Five Pebbles are an order of knights that are completly and utterly useless... You are the fifth member and the only one with some potential [/center][/font_size][/font]"
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="."]
+offset_left = -120.0
+offset_top = 224.0
+offset_right = 360.0
+offset_bottom = 320.0
+scale = Vector2(0.5, 0.5)
+bbcode_enabled = true
+text = "[font=res://PixelPebble.ttf][font_size=24][center]The thing about the Pebbles are that they're pretty bad at defending the dungeon
+And that gave some moss a great chance to spread from the nearby dungeons to here. [/center][/font_size][/font]"
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="."]
+offset_left = -120.0
+offset_top = 408.0
+offset_right = 360.0
+offset_bottom = 480.0
+scale = Vector2(0.5, 0.5)
+bbcode_enabled = true
+text = "[font=res://PixelPebble.ttf][font_size=24][center]Since the dungeon's takeover the rest of the Pebbles have been trapped in the dungeon. And you have tasked yourself rescuing them.[/center][/font_size][/font]"
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="."]
+offset_left = -127.0
+offset_top = 58.0
+offset_right = 383.0
+offset_bottom = 72.0
+scale = Vector2(0.5, 0.5)
+bbcode_enabled = true
+text = "[font=res://PixelPebble.ttf][color=4a5462][center][/center][/color][/font]"
+scroll_active = false
+
+[node name="Director" type="Node2D" parent="."]
+script = ExtResource("6_4e86m")
+
+[node name="Camera2D" type="Camera2D" parent="Director"]
+zoom = Vector2(4.5, 4.5)
+position_smoothing_enabled = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = -128.0
+offset_top = 58.0
+offset_right = 384.0
+offset_bottom = 81.0
+scale = Vector2(0.5, 0.5)
+text = "(Z to continue, X to skip)"
+label_settings = SubResource("LabelSettings_e054k")
+horizontal_alignment = 1
+vertical_alignment = 1

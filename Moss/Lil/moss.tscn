@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://cw33yty3l4onq"]
+
+[ext_resource type="PackedScene" uid="uid://djpiv3hdictch" path="res://Moss/Lil/Moss Monster.aseprite" id="1_4u8cm"]
+[ext_resource type="Script" path="res://Moss/Lil/moss.gd" id="1_bnwy3"]
+[ext_resource type="Script" path="res://Moss/Lil/Pebcheck.gd" id="3_2oy8h"]
+[ext_resource type="Script" path="res://Moss/Lil/Moss Monster.gd" id="3_6sfle"]
+[ext_resource type="Script" path="res://Moss/Lil/Moscol.gd" id="4_e802u"]
+[ext_resource type="PackedScene" uid="uid://76j5370pxqgj" path="res://Moss/Lil/moss_dmg.tscn" id="6_h22p7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t2i10"]
+radius = 25.0
+
+[sub_resource type="Gradient" id="Gradient_286w7"]
+colors = PackedColorArray(0.930435, 0.930435, 0.930435, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xpy66"]
+gradient = SubResource("Gradient_286w7")
+width = 12
+height = 12
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0.5)
+
+[node name="Moss" type="CharacterBody2D" groups=["moss"]]
+script = ExtResource("1_bnwy3")
+
+[node name="Moss Monster" parent="." instance=ExtResource("1_4u8cm")]
+position = Vector2(0, -1)
+frame_progress = 0.0114476
+script = ExtResource("3_6sfle")
+
+[node name="Area2D" type="Area2D" parent="." groups=["moss check"]]
+visible = false
+script = ExtResource("3_2oy8h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_t2i10")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-4, 3, 4, 3, 4, -1, 2, -3, -1, -3, -4, -1)
+script = ExtResource("4_e802u")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.101961, 0.478431, 0.243137, 1)
+energy = 4.0
+texture = SubResource("GradientTexture2D_xpy66")
+
+[node name="Moss" type="Area2D" parent="."]
+visible = false
+
+[node name="Moss" type="CollisionPolygon2D" parent="Moss"]
+polygon = PackedVector2Array(-4, 3, 4, 3, 4, -2, -4, -2)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+
+[node name="Moss Dmg" parent="." instance=ExtResource("6_h22p7")]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(0, 3)
+amount = 32
+lifetime = 4.0
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(4, 1)
+gravity = Vector2(0, 0)
+scale_amount_min = 0.5
+scale_amount_max = 2.0
+color = Color(0.141176, 0.321569, 0.231373, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
