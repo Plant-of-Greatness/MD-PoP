@@ -1,0 +1,135 @@
+[gd_scene load_steps=18 format=3 uid="uid://cwyiih7qdgo8p"]
+
+[ext_resource type="Script" path="res://Pebble/Weapon/egg.gd" id="1_82epj"]
+[ext_resource type="Texture2D" uid="uid://d2pov1nlnommp" path="res://Pebble/Weapon/Fireball.aseprite" id="1_p2djp"]
+[ext_resource type="Texture2D" uid="uid://cbinqcedtvm2q" path="res://Pebble/Weapon/Egg Red.png" id="3_cal7k"]
+[ext_resource type="Script" path="res://Pebble/Weapon/Egg Light.gd" id="3_x4ph7"]
+[ext_resource type="Script" path="res://Pebble/Weapon/Egg bre.gd" id="4_8lbbf"]
+[ext_resource type="Script" path="res://Pebble/Weapon/Warning.gd" id="4_nq0te"]
+[ext_resource type="Texture2D" uid="uid://gkrppntryxjx" path="res://Pebble/Weapon/Egg Particle.aseprite" id="5_6flxp"]
+
+[sub_resource type="Gradient" id="Gradient_1jjwp"]
+colors = PackedColorArray(1, 1, 1, 1, 0.0686635, 0.0686635, 0.0686635, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lig0i"]
+gradient = SubResource("Gradient_1jjwp")
+width = 12
+height = 12
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6cjqj"]
+radius = 4.5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23v5f"]
+atlas = ExtResource("3_cal7k")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ap54c"]
+atlas = ExtResource("3_cal7k")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdo4j"]
+atlas = ExtResource("3_cal7k")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jh5px"]
+atlas = ExtResource("3_cal7k")
+region = Rect2(0, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w7pgs"]
+atlas = ExtResource("3_cal7k")
+region = Rect2(8, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u11jw"]
+atlas = ExtResource("3_cal7k")
+region = Rect2(16, 8, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4dtdk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23v5f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ap54c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pdo4j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jh5px")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w7pgs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u11jw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u11jw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w7pgs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jh5px")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pdo4j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ap54c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23v5f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Egg" type="CharacterBody2D"]
+script = ExtResource("1_82epj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_p2djp")
+script = ExtResource("3_x4ph7")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.705882, 0.12549, 0.164706, 1)
+texture = SubResource("GradientTexture2D_lig0i")
+script = ExtResource("4_8lbbf")
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_6cjqj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_4dtdk")
+frame_progress = 0.815499
+script = ExtResource("4_nq0te")
+
+[node name="Egg breaking" type="CPUParticles2D" parent="."]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("5_6flxp")
+emission_shape = 1
+emission_sphere_radius = 4.0
+gravity = Vector2(0, 160)
+angular_velocity_min = -320.0
+angular_velocity_max = 320.0
+linear_accel_min = -100.0
+linear_accel_max = 100.0
+radial_accel_min = -100.0
+radial_accel_max = 100.0
+tangential_accel_min = -100.0
+tangential_accel_max = 100.0

@@ -1,0 +1,104 @@
+[gd_scene load_steps=15 format=3 uid="uid://cx64joe0oa038"]
+
+[ext_resource type="Script" path="res://Pebble/Weapon/springtail.gd" id="1_bk1fa"]
+[ext_resource type="Texture2D" uid="uid://be88l327idjx0" path="res://Pebble/Weapon/Springtail.png" id="1_ylje5"]
+[ext_resource type="Script" path="res://Pebble/Weapon/Springtail Ani.gd" id="3_em30e"]
+[ext_resource type="Script" path="res://Pebble/Weapon/Moss Check.gd" id="3_wf1gy"]
+[ext_resource type="Script" path="res://Pebble/Weapon/Wait.gd" id="4_eagwk"]
+[ext_resource type="Script" path="res://Pebble/Weapon/Moss Kill.gd" id="4_oy272"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2iu3"]
+atlas = ExtResource("1_ylje5")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0sm77"]
+atlas = ExtResource("1_ylje5")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7iapv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2iu3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0sm77")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vjhyx"]
+radius = 3.0
+height = 8.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ms2c6"]
+size = Vector2(2, 8)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bry4b"]
+radius = 25.0
+
+[sub_resource type="Gradient" id="Gradient_qeafn"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s86en"]
+gradient = SubResource("Gradient_qeafn")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="Springtail" type="CharacterBody2D" groups=["weapon"]]
+script = ExtResource("1_bk1fa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7iapv")
+frame_progress = 0.672555
+speed_scale = 3.0
+script = ExtResource("3_em30e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_vjhyx")
+script = ExtResource("4_eagwk")
+
+[node name="Timer" type="Timer" parent="CollisionShape2D"]
+wait_time = 0.5
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+script = ExtResource("4_oy272")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(5, 0)
+shape = SubResource("RectangleShape2D_ms2c6")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-5, 0)
+shape = SubResource("RectangleShape2D_ms2c6")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -5)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_ms2c6")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 5)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_ms2c6")
+
+[node name="Moss Check" type="Area2D" parent="."]
+visible = false
+script = ExtResource("3_wf1gy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Moss Check"]
+shape = SubResource("CircleShape2D_bry4b")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.360784, 0.196078, 0.278431, 1)
+texture = SubResource("GradientTexture2D_s86en")
+
+[connection signal="timeout" from="CollisionShape2D/Timer" to="CollisionShape2D" method="_on_timer_timeout"]

@@ -1,0 +1,25 @@
+[remap]
+
+importer="Aseprite AnimatedSprite2D Import"
+type="PackedScene"
+uid="uid://dwn4qrd7neq3v"
+path="res://.godot/imported/Refill.aseprite-3d6a000002c9b657a0fa6906f11d8e0d.scn"
+
+[deps]
+
+source_file="res://Pebble/Refill.aseprite"
+dest_files=["res://.godot/imported/Refill.aseprite-3d6a000002c9b657a0fa6906f11d8e0d.scn"]
+
+[params]
+
+spritesheet/layout=0
+spritesheet/fixed_rows_count=1
+spritesheet/fixed_columns_count=1
+spritesheet/border_type=0
+spritesheet/trim=false
+spritesheet/ignore_empty=false
+spritesheet/merge_duplicates=false
+animation/default/name="default"
+animation/default/direction=0
+animation/default/repeat_count=0
+animation/autoplay=""

@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://qusd6a1bc6cv"]
+
+[ext_resource type="Script" path="res://Pebble/Weapon/fireball.gd" id="1_ebc82"]
+[ext_resource type="Texture2D" uid="uid://dxl2x4abdxsvm" path="res://Pebble/Weapon/Blue Fireball.aseprite" id="2_4tkbf"]
+[ext_resource type="Script" path="res://Pebble/Mob-detect.gd" id="3_fmd5u"]
+
+[sub_resource type="Gradient" id="Gradient_84peq"]
+colors = PackedColorArray(1, 1, 1, 1, 0.0686635, 0.0686635, 0.0686635, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_eg03m"]
+gradient = SubResource("Gradient_84peq")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ov8so"]
+radius = 5.0
+
+[node name="Fireball" type="CharacterBody2D" groups=["weapon"]]
+script = ExtResource("1_ebc82")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_4tkbf")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.0784314, 0.203922, 0.392157, 1)
+texture = SubResource("GradientTexture2D_eg03m")
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+script = ExtResource("3_fmd5u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ov8so")

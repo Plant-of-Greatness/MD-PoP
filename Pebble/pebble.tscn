@@ -1,0 +1,91 @@
+[gd_scene load_steps=11 format=3 uid="uid://bxcx4iwaksyw8"]
+
+[ext_resource type="Script" path="res://Pebble/movement.gd" id="1_i237k"]
+[ext_resource type="PackedScene" uid="uid://1esb03wkr2sk" path="res://Pebble/Pebble.aseprite" id="2_jy8x5"]
+[ext_resource type="Script" path="res://Pebble/Pebble.gd" id="3_3gbtf"]
+[ext_resource type="Script" path="res://Pebble/Saver.gd" id="4_rriaj"]
+[ext_resource type="Script" path="res://Pebble/Label.gd" id="6_ienx5"]
+[ext_resource type="Script" path="res://Pebble/PainBox.gd" id="6_jaskw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kgdbi"]
+size = Vector2(6, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mcthh"]
+size = Vector2(2, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5tube"]
+size = Vector2(8, 8)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b2653"]
+radius = 15.0
+
+[node name="Pebble" type="CharacterBody2D"]
+script = ExtResource("1_i237k")
+
+[node name="Pebble" parent="." instance=ExtResource("2_jy8x5")]
+frame_progress = 0.481435
+script = ExtResource("3_3gbtf")
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_kgdbi")
+one_way_collision_margin = 0.0
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="DashTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="Saver" type="Area2D" parent="."]
+visible = false
+script = ExtResource("4_rriaj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saver"]
+shape = SubResource("RectangleShape2D_mcthh")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+script = ExtResource("6_jaskw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_5tube")
+
+[node name="Springtail Shield" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Springtail Shield"]
+visible = false
+shape = SubResource("CircleShape2D_b2653")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 16
+lifetime = 0.1
+one_shot = true
+explosiveness = 0.9
+lifetime_randomness = 0.2
+emission_shape = 3
+emission_rect_extents = Vector2(4, 4)
+gravity = Vector2(0, 320)
+initial_velocity_max = 50.0
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+linear_accel_min = -100.0
+linear_accel_max = 100.0
+radial_accel_min = -100.0
+radial_accel_max = 100.0
+tangential_accel_min = -100.0
+tangential_accel_max = 100.0
+damping_max = 100.0
+angle_min = -45.0
+scale_amount_min = 0.1
+scale_amount_max = 2.0
+color = Color(0.545098, 0.576471, 0.686275, 1)
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("6_ienx5")
+
+[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]

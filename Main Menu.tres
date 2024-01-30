@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cx1137exfra3e"]
+
+[ext_resource type="FontFile" uid="uid://b3c2dninxjd0h" path="res://PixelPebble.ttf" id="1_e5io6"]
+
+[resource]
+line_spacing = 2.0
+font = ExtResource("1_e5io6")
+font_size = 48
