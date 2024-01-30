@@ -1,0 +1,80 @@
+[gd_scene load_steps=15 format=3 uid="uid://7o7expqlqwhg"]
+
+[ext_resource type="Script" path="res://Game/pause.gd" id="1_b4j5g"]
+[ext_resource type="Texture2D" uid="uid://cxur0dhqd4ddd" path="res://Game/Pause Screen.aseprite" id="1_hae8d"]
+[ext_resource type="Texture2D" uid="uid://dp4m7g63hj8nu" path="res://Game/Resume.aseprite" id="3_gunuq"]
+[ext_resource type="Texture2D" uid="uid://bmtl0mkjdlaty" path="res://Game/Resume Pressed.aseprite" id="4_xsggs"]
+[ext_resource type="Texture2D" uid="uid://dhaadquqlkn7r" path="res://Game/Resume Hover.aseprite" id="5_4yv8m"]
+[ext_resource type="Script" path="res://Game/Resume.gd" id="6_xcsww"]
+[ext_resource type="Texture2D" uid="uid://dgooyhaa4itld" path="res://Game/Menu.aseprite" id="7_6dvaw"]
+[ext_resource type="Texture2D" uid="uid://qwx3y1xbwxwr" path="res://Game/Quit.aseprite" id="7_sdk2c"]
+[ext_resource type="Texture2D" uid="uid://dcjksgn6by85f" path="res://Game/Quit Pressed.aseprite" id="8_athb2"]
+[ext_resource type="Texture2D" uid="uid://cyici8jgm7xt4" path="res://Game/Menu Pressed.aseprite" id="8_fvjs0"]
+[ext_resource type="Texture2D" uid="uid://cah1pme02et6c" path="res://Game/Quit Hover.aseprite" id="9_nb0p5"]
+[ext_resource type="Texture2D" uid="uid://dfhet8ebnedqv" path="res://Game/Menu Hover.aseprite" id="9_soetf"]
+[ext_resource type="Script" path="res://Game/Menu.gd" id="10_f5scj"]
+[ext_resource type="Script" path="res://Game/Quit.gd" id="10_rnk4r"]
+
+[node name="Pause" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pause Screen" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_hae8d")
+script = ExtResource("1_b4j5g")
+
+[node name="Resume" type="TextureButton" parent="Pause Screen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.296
+offset_left = 320.0
+offset_top = 64.0
+offset_right = -768.0
+offset_bottom = -111.808
+scale = Vector2(8, 8)
+texture_normal = ExtResource("3_gunuq")
+texture_pressed = ExtResource("4_xsggs")
+texture_hover = ExtResource("5_4yv8m")
+script = ExtResource("6_xcsww")
+
+[node name="Menu" type="TextureButton" parent="Pause Screen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.543
+offset_left = 320.0
+offset_top = 224.0
+offset_right = -768.0
+offset_bottom = -111.864
+scale = Vector2(8, 8)
+texture_normal = ExtResource("7_6dvaw")
+texture_pressed = ExtResource("8_fvjs0")
+texture_hover = ExtResource("9_soetf")
+script = ExtResource("10_f5scj")
+
+[node name="Quit" type="TextureButton" parent="Pause Screen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.79
+offset_left = 319.0
+offset_top = 384.0
+offset_right = -769.0
+offset_bottom = -111.92
+scale = Vector2(8, 8)
+texture_normal = ExtResource("7_sdk2c")
+texture_pressed = ExtResource("8_athb2")
+texture_hover = ExtResource("9_nb0p5")
+script = ExtResource("10_rnk4r")

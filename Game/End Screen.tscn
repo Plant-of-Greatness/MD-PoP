@@ -1,0 +1,139 @@
+[gd_scene load_steps=17 format=3 uid="uid://bg7kajy5rsco5"]
+
+[ext_resource type="Texture2D" uid="uid://bmro65yksqq33" path="res://Level/End.png" id="1_84w3r"]
+[ext_resource type="LabelSettings" uid="uid://cx1137exfra3e" path="res://Main Menu.tres" id="2_4xvks"]
+[ext_resource type="Script" path="res://Game/Node2D.gd" id="2_tasga"]
+[ext_resource type="Texture2D" uid="uid://dgooyhaa4itld" path="res://Game/Menu.aseprite" id="3_a24ph"]
+[ext_resource type="Texture2D" uid="uid://cyici8jgm7xt4" path="res://Game/Menu Pressed.aseprite" id="4_rkg0v"]
+[ext_resource type="Texture2D" uid="uid://dfhet8ebnedqv" path="res://Game/Menu Hover.aseprite" id="5_ri35k"]
+[ext_resource type="Script" path="res://Game/Menu.gd" id="6_tv2qj"]
+[ext_resource type="Texture2D" uid="uid://dlsdtn0srfryx" path="res://Level/Credits.aseprite" id="7_vew0w"]
+[ext_resource type="Texture2D" uid="uid://qwx3y1xbwxwr" path="res://Game/Quit.aseprite" id="7_yipvv"]
+[ext_resource type="Texture2D" uid="uid://g4fjkhl8osqi" path="res://Level/Credits Pressed.aseprite" id="8_ifmxi"]
+[ext_resource type="Texture2D" uid="uid://dcjksgn6by85f" path="res://Game/Quit Pressed.aseprite" id="8_mbfc1"]
+[ext_resource type="Texture2D" uid="uid://cah1pme02et6c" path="res://Game/Quit Hover.aseprite" id="9_7566b"]
+[ext_resource type="Texture2D" uid="uid://dmfd282jsbbqs" path="res://Level/Credits Hover.aseprite" id="9_j1goy"]
+[ext_resource type="Script" path="res://Game/Quit.gd" id="10_6hq6b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsm3u"]
+atlas = ExtResource("1_84w3r")
+region = Rect2(1, 2, 1, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hcdxi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tsm3u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="End Screen" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 648)
+scale = Vector2(1152, 1296)
+sprite_frames = SubResource("SpriteFrames_hcdxi")
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("2_tasga")
+
+[node name="Camera2D" type="Camera2D" parent="Node2D"]
+position = Vector2(0, 324)
+position_smoothing_enabled = true
+
+[node name="Thank" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -192.0
+offset_top = 16.0
+offset_right = 192.0
+offset_bottom = 58.0
+grow_horizontal = 2
+text = "Thanks for playing!"
+label_settings = ExtResource("2_4xvks")
+horizontal_alignment = 1
+
+[node name="Playstyles" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -499.5
+offset_top = 88.0
+offset_right = 499.5
+offset_bottom = 394.0
+grow_horizontal = 2
+text = "If you haven't already, try the other weapons.
+They each have weird but unqiue playstyles. 
+But ultimately I hope you enjoyed the game and I 
+will add new content after the jam based on feedback.
+So if you have any, don't hesitate to share.
+
+If you continue, I hope you enjoy!"
+label_settings = ExtResource("2_4xvks")
+horizontal_alignment = 1
+
+[node name="Menu" type="TextureButton" parent="."]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.543
+offset_left = -544.0
+offset_top = 488.0
+offset_right = -480.0
+offset_bottom = 504.0
+scale = Vector2(8, 8)
+texture_normal = ExtResource("3_a24ph")
+texture_pressed = ExtResource("4_rkg0v")
+texture_hover = ExtResource("5_ri35k")
+script = ExtResource("6_tv2qj")
+
+[node name="Credits" type="TextureButton" parent="."]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.79
+offset_left = 32.0
+offset_top = 488.0
+offset_right = 96.0
+offset_bottom = 504.0
+scale = Vector2(8, 8)
+texture_normal = ExtResource("7_vew0w")
+texture_pressed = ExtResource("8_ifmxi")
+texture_hover = ExtResource("9_j1goy")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -213.0
+offset_top = 662.0
+offset_right = 213.0
+offset_bottom = 1144.0
+text = "Programming
+Terra Greatness
+
+Art
+Terra Greatness
+
+Music
+Terra Greatness
+
+Feedback and Testing
+Phalhandor"
+label_settings = ExtResource("2_4xvks")
+horizontal_alignment = 1
+
+[node name="Quit" type="TextureButton" parent="."]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.79
+offset_left = -256.0
+offset_top = 1152.0
+offset_right = -192.0
+offset_bottom = 1168.0
+scale = Vector2(8, 8)
+texture_normal = ExtResource("7_yipvv")
+texture_pressed = ExtResource("8_mbfc1")
+texture_hover = ExtResource("9_7566b")
+script = ExtResource("10_6hq6b")
+
+[connection signal="pressed" from="Credits" to="Node2D" method="_on_credits_pressed"]
